@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "nodemon --exec babel-node lib/server.js",
     "webpack": "webpack --config webpack.config.js --mode development --watch",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "lint": "esw lib --color --watch --fix",
+    "start": "npm-run-all --parallel webpack lint"
   },
   "babel": {
     "presets": [
@@ -19,9 +21,14 @@
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "eslint": "^4.19.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "eslint-watch": "^3.1.4",
     "jest": "^22.4.3",
     "nodemon": "^1.17.3",
+    "npm-run-all": "^4.1.2",
     "react-test-renderer": "^16.3.2",
     "webpack-cli": "^2.0.14"
   },
