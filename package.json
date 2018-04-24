@@ -5,7 +5,7 @@
   "main": "lib/server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec babel-node lib/server.js",
+    "dev": "NODE_PATH=./lib&& nodemon --exec babel-node lib/server.js",
     "webpack": "webpack --config webpack.config.js --mode development --watch",
     "test": "jest --watchAll",
     "lint": "esw lib --color --watch --fix",
@@ -33,6 +33,7 @@
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
