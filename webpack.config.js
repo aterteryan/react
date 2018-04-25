@@ -12,6 +12,7 @@ const config = {
       path.resolve('./node_modules')
     ]
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
