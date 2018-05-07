@@ -9,7 +9,11 @@
     "webpack": "webpack --config webpack.config.js --mode development --watch",
     "test": "jest --watchAll",
     "lint": "esw lib --color --watch --fix",
-    "start": "npm-run-all --parallel webpack lint"
+    "start": "npm-run-all --parallel webpack lint",
+    "coverage": "jest --coverage",
+    "build": "webpack -p",
+    "build-node": "babel lib -d build --copy-files",
+    "start-prod": "NODE_ENV=production NODE_PATH=./build pm2 start build/server.js -i max --name appProd"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./jestSetup.js"
@@ -17,15 +21,25 @@
   "babel": {
     "presets": [
       "react",
-      "env",
-      "stage-2"
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-object-rest-spread"
     ]
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.3",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-adapter-react-15": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.11.0",
@@ -35,7 +49,8 @@
     "jest": "^22.4.3",
     "nodemon": "^1.17.3",
     "npm-run-all": "^4.1.2",
-    "react-test-renderer": "^16.3.2",
+    "react-addons-perf": "^15.4.2",
+    "react-test-renderer": "^15.6.1",
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
@@ -53,8 +68,8 @@
     "lodash.pickby": "^4.6.0",
     "pm2": "^2.10.2",
     "prop-types": "^15.6.1",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "webpack": "^4.5.0"
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "webpack": "3.0.0"
   }
 }

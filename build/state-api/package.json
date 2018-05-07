@@ -1,0 +1,7 @@
+{
+  "name": "state-api",
+  "version": "1.0.0",
+  "description": "data api",
+  "main": "lib/index.js",
+  "license": "MIT"
+}
